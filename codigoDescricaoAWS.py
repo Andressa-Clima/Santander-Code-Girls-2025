@@ -1,13 +1,16 @@
 entrada = input()
 
-def descrever_servico(servico):
-    if servico == "Amazon EC2":
-        return "Serviço de máquinas virtuais sob demanda"
-    elif servico == "Amazon S3":
-        return "Armazenamento de objetos na nuvem"
-    elif servico == "AWS Lambda":
-        return "Executa código sem gerenciar servidores"
-    elif servico == "Amazon Machine Image":
-        return "Modelo de instância EC2 pré-configurado"
+def descrever_lambda_termo(termo):
+  if termo == "Lambda Function":
+    return "Função executada automaticamente na AWS"
 
-print(descrever_servico(entrada))
+  elif termo == "Trigger":
+    return "Evento que dispara uma execução Lambda"
+
+  elif termo == "Runtime":
+    return "Ambiente de execução da função"
+
+  elif termo == "Execution Role":
+    return "Permissões para a função acessar serviços"
+
+print(descrever_lambda_termo(entrada))
