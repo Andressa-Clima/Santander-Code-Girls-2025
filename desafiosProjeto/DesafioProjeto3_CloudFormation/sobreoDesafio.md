@@ -1,4 +1,4 @@
-# 🚀 Desafio AWS CloudFormation – DIO
+# 🚀 Desafio 3 DIO/CodeGirls - AWS CloudFormation
 
 ## 🧩 Objetivo
 Implementar minha primeira stack com AWS CloudFormation, criando uma instância EC2 e automatizando a instalação do Apache.
