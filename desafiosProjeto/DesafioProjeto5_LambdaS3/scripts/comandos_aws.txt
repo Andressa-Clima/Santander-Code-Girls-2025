@@ -1,0 +1,14 @@
+# Criar bucket
+awslocal s3api create-bucket --bucket notas-fiscais-upload
+
+# Criar tabela DynamoDB
+awslocal dynamodb create-table --table-name NotasFiscais --attribute-definitions AttributeName=id,AttributeType=S --key-schema AttributeName=id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+
+# Criar função Lambda
+aws lambda create-function --function-name ProcessarNotasFiscais --runtime python3.9 --role arn:aws:iam::000000000000:role/lambda-role --handler grava_db.lambda_handler --zip-file fileb://lambda_function.zip --endpoint-url=http://localhost:4566
+
+# Adicionar permissão do S3 à Lambda
+aws lambda add-permission --function-name ProcessarNotasFiscais --statement-id s3-trigger-permission --action "lambda:InvokeFunction" --principal s3.amazonaws.com --source-arn "arn:aws:s3:::notas-fiscais-upload" --endpoint-url=http://localhost:4566
+
+# Upload de teste
+awslocal s3 cp ../data/notas_fiscais_2025.json s3://notas-fiscais-upload
